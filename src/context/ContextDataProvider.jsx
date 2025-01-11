@@ -5,13 +5,11 @@ function ContextDataProvider({ children }) {
   const [employess, Dispatch] = useReducer(reducerFn, []);
 
   function reducerFn(state, action) {
-    
     switch (action.type) {
-      
       case "fetch":
-          return action.payload;
+        return action.payload;
 
-      case "AddData":
+      case "AddForm":
         fetch("http://localhost:3000/Employee_Details", {
           method: "POST",
           body: JSON.stringify(action.payload),
@@ -20,13 +18,13 @@ function ContextDataProvider({ children }) {
           },
         });
 
-        
-       
-          
-        
-    } 
+      case "Delete":
+        fetch(`http://localhost:3000/Employee_Details/${action.payload}`, {
+          method: "DELETE",
+        });
+      
+    }
   }
-
 
   return (
     <ContextData.Provider value={{ employess, Dispatch }}>

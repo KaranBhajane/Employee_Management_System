@@ -1,63 +1,67 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ContextData } from "../context/ContextDataProvider";
+import Employee_EditDetails from "./Employee_EditDetails";
+import Emp_UpdateDetails from "./Emp_UpdateDetails";
+import { Link } from "react-router";
+
 
 const Employees = () => {
-  let { employess, Dispatch } = useContext(ContextData);
-
-  async function fetchData() {
-    let data = await fetch("http://localhost:3000/Employee_Details");
-    let orgData = await data.json();
-    Dispatch({ type: "fetch", payload: orgData });
-  }
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const [empId, setEmpId] = useState("");
   const [empName, setEmpName] = useState("");
   const [empDepart, setEmpDepart] = useState("");
   const [empRole, setEmpRole] = useState("");
   const [empSalary, setEmpSalary] = useState("");
-
   const [dataObj, setDataObj] = useState([]);
+  let { employess, Dispatch, handleDel } = useContext(ContextData);
+
+  async function fetchData() {
+    let data = await fetch("http://localhost:3000/Employee_Details");
+    let orgData = await data.json();
+    setDataObj(orgData);
+
+    Dispatch({ type: "fetch", payload: dataObj });
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   function handleForm(event) {
     event.preventDefault();
-    setDataObj([
-      ...employess,
-      {
-        ID: empId,
-        Name: empName,
-        Department: empDepart,
-        Role: empRole,
-        Salary: empSalary,
-      },
-    ]);
+
+    let EmpData = {
+      ID: empId,
+      Name: empName,
+      Department: empDepart,
+      Role: empRole,
+      Salary: empSalary,
+    };
+
+    setDataObj([...dataObj, EmpData]);
+
+    Dispatch({ type: "AddForm", payload: EmpData });
+
     setEmpId("");
     setEmpName("");
     setEmpDepart("");
     setEmpRole("");
     setEmpSalary("");
   }
-  console.log(dataObj);
 
   return (
     <div className="bg-slate-200 pt-5 px-5 w-full   ">
       <div className=" mb-10  w-full ">
         <form
-          onSubmit={(event) => {
-            handleForm(event);
-            Dispatch({ type: "AddData", payload: dataObj });
-          }}
+          onSubmit={(event) => handleForm(event)}
           className="flex items-center justify-between h-4"
         >
-          <h1 className="text-slate-600  font-semibold">Add Employee:</h1>
+          <h2 className="text-slate-700 font-semibold text-lg">Add Entry :</h2>
           <input
             value={empId}
             onChange={(e) => setEmpId(e.target.value)}
             className="text-black font-semibold px-2 rounded-lg placeholder:text-emerald-700 outline-none"
             type="text"
-            placeholder="Employee Id"
+            placeholder="Employee-ID ( Unique ID)"
           />
           <input
             value={empName}
@@ -94,7 +98,7 @@ const Employees = () => {
             Save
           </button>
         </form>
-      </div>
+      </div>      
 
       <table className="w-full h-14  ">
         <thead className="text-left h-14 mb-5  ">
@@ -108,19 +112,26 @@ const Employees = () => {
           </tr>
         </thead>
 
-        {dataObj.map((el) => {
+        {dataObj.map(({ ID, Name, Department, Role, Salary, id }) => {
           return (
-            <tbody key={el.ID} className="text-center text-slate-700">
+            <tbody key={ID} className="text-center text-slate-700">
               <tr className="border border-black h-12 ">
-                <td>{el.ID}</td>
-                <td>{el.Name}</td>
-                <td>{el.Department}</td>
-                <td>{el.Role}</td>
-                <td>{el.Salary}</td>
-                <td className="">
-                  <button onClick={Dispatch({type:"Delete",payload:el.id})} className="bg-slate-600 px-4 rounded-lg text-slate-200 p-1 mx-4">Delete</button>
-                  <button  className="bg-slate-600 px-4 rounded-lg text-slate-200 p-1 mx-4">Edit</button>
-                </td>
+                <td>{ID}</td>
+                <td>{Name}</td>
+                <td>{Department}</td>
+                <td>{Role}</td>
+                <td>{Salary}</td>
+                <td className=" border-black flex items-center mt-2 justify-center">
+                  <button
+                    onClick={() => Dispatch({ type: "Delete", payload: id })}
+                    className="bg-slate-600 px-4 rounded-lg text-slate-200 p-1 mx-4"
+                  >
+                    Delete
+                  </button>
+
+                  <Link className="bg-slate-600 px-4 rounded-lg text-slate-200 p-1 mx-4" to={`/Emp_Details/${id}`}>Edit</Link>
+                  
+                </td> 
               </tr>
             </tbody>
           );

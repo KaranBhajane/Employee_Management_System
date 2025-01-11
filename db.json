@@ -1,68 +1,12 @@
 {
   "Employee_Details": [
     {
-      "ID": "EMP001",
-      "Name": "Alice Johnson",
-      "Department": "Engineering",
-      "Role": "Software Engineer",
-      "Salary": 75000,
-      "id": "2fac"
-    },
-    {
-      "ID": "EMP002",
-      "Name": "Bob Smith",
-      "Department": "Marketing",
-      "Role": "Marketing Manager",
-      "Salary": 65000,
-      "id": "d456"
-    },
-    {
-      "ID": "EMP003",
-      "Name": "Charlie Brown",
-      "Department": "Sales",
-      "Role": "Sales Executive",
-      "Salary": 55000,
-      "id": "e513"
-    },
-    {
-      "ID": "EMP004",
-      "Name": "Diana Lee",
-      "Department": "Human Resources",
-      "Role": "HR Specialist",
-      "Salary": 60000,
-      "id": "d2e0"
-    },
-    {
-      "ID": "EMP005",
-      "Name": "Ethan Davis",
-      "Department": "Engineering",
-      "Role": "DevOps Engineer",
-      "Salary": 80000,
-      "id": "912a"
-    },
-    {
-      "ID": "EMP006",
-      "Name": "Fiona Green",
-      "Department": "Finance",
-      "Role": "Financial Analyst",
-      "Salary": 70000,
-      "id": "8442"
-    },
-    {
-      "ID": "EMP007",
-      "Name": "George Harris",
-      "Department": "Operations",
-      "Role": "Operations Manager",
-      "Salary": 75000,
-      "id": "5943"
-    },
-    {
       "ID": "EMP008",
       "Name": "Hannah Scott",
       "Department": "Customer Support",
       "Role": "Support Specialist",
       "Salary": 50000,
-      "id": "56b5"
+      "id": "3adf"
     },
     {
       "ID": "EMP009",
@@ -70,7 +14,7 @@
       "Department": "Engineering",
       "Role": "Frontend Developer",
       "Salary": 72000,
-      "id": "1a4b"
+      "id": "ff11"
     },
     {
       "ID": "EMP010",
@@ -78,7 +22,39 @@
       "Department": "Legal",
       "Role": "Legal Advisor",
       "Salary": 90000,
-      "id": "0acc"
+      "id": "c52d"
+    },
+    {
+      "id": "8477",
+      "ID": "EMP011",
+      "Name": "Karan",
+      "Department": "Engineering",
+      "Role": "SDE",
+      "Salary": "450000"
+    },
+    {
+      "id": "9a90",
+      "ID": "EMP0012",
+      "Name": "Vaishnavi",
+      "Department": "Engineering",
+      "Role": "Builder",
+      "Salary": "780000"
+    },
+    {
+      "id": "160d",
+      "ID": "EMP0013",
+      "Name": "Aniket",
+      "Department": "Engineering",
+      "Role": "Sde",
+      "Salary": "75000"
+    },
+    {
+      "id": "bece",
+      "ID": "EMP0014",
+      "Name": "Gaurav",
+      "Department": "cloud",
+      "Role": "sikjs",
+      "Salary": "5544"
     }
   ]
 }
